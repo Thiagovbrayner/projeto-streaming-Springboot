@@ -25,4 +25,10 @@ public class FilmeService
     {
         return filmeRepository.findAll();
     }
+
+    public void deletarFilme(Long id)
+    {
+        filmeRepository.deleteById(id);
+    }
+
 }

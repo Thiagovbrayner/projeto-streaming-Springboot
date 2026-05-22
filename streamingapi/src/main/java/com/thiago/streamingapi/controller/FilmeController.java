@@ -23,9 +23,15 @@ public class FilmeController
     }
 
     @PostMapping("/filmes")
-    public Filme postFilme(@RequestBody Filme filme)
+    public Filme inserirFilme(@RequestBody Filme filme)
     {
         return filmeService.inserirFilme(filme);
+    }
+
+    @DeleteMapping("/filmes/{id}")
+    public void deleteFilme(@PathVariable Long id)
+    {
+        filmeService.deletarFilme(id);
     }
 
 }
