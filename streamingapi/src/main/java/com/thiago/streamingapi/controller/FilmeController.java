@@ -2,8 +2,9 @@ package com.thiago.streamingapi.controller;
 
 import com.thiago.streamingapi.model.Filme;
 import com.thiago.streamingapi.service.FilmeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class FilmeController
@@ -15,10 +16,16 @@ public class FilmeController
         this.filmeService = filmeService;
     }
 
-    @GetMapping("/filme")
-    public Filme filme()
+    @GetMapping("/filmes")
+    public List<Filme> listarFilmes()
     {
-        return filmeService.criarFilme();
+        return filmeService.listarFilmes();
+    }
+
+    @PostMapping("/filmes")
+    public Filme postFilme(@RequestBody Filme filme)
+    {
+        return filmeService.inserirFilme(filme);
     }
 
 }

@@ -4,6 +4,8 @@ import com.thiago.streamingapi.model.Filme;
 import com.thiago.streamingapi.repository.FilmeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FilmeService
 {
@@ -14,12 +16,13 @@ public class FilmeService
         this.filmeRepository = filmeRepository;
     }
 
-    public Filme criarFilme()
+    public Filme inserirFilme(Filme filme)
     {
-        Filme filme = new Filme();
-        filme.setTitulo("Casino");
-        filme.setDiretor("Martin Scorsese");
-        filme.setGenero("Crime");
         return filmeRepository.save(filme);
+    }
+
+    public List<Filme> listarFilmes()
+    {
+        return filmeRepository.findAll();
     }
 }
