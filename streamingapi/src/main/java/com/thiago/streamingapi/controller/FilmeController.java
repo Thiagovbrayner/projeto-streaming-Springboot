@@ -34,4 +34,10 @@ public class FilmeController
         filmeService.deletarFilme(id);
     }
 
+    @PutMapping("/filmes/{id}")
+    public Filme updateFilme(@RequestBody Filme filme, @PathVariable Long id)
+    {
+         return filmeService.updateFilme(filme, id);
+    }
+
 }

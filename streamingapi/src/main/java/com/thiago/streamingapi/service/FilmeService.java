@@ -31,4 +31,16 @@ public class FilmeService
         filmeRepository.deleteById(id);
     }
 
+    public Filme updateFilme(Filme filme, Long id)
+    {
+        Filme filmeExistente = filmeRepository.findById(id).orElseThrow();
+
+        if (filme.getTitulo() != null) filmeExistente.setTitulo(filme.getTitulo());
+        if (filme.getDiretor() != null) filmeExistente.setDiretor(filme.getDiretor());
+        if (filme.getGenero() != null) filmeExistente.setGenero(filme.getGenero());
+        if (filme.getDescricao() != null) filmeExistente.setDescricao(filme.getDescricao());
+        
+        return filmeRepository.save(filmeExistente);
+    }
+
 }
