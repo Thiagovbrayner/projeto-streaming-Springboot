@@ -2,9 +2,11 @@ package com.thiago.streamingapi.controller;
 
 import com.thiago.streamingapi.model.Filme;
 import com.thiago.streamingapi.service.FilmeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class FilmeController
@@ -20,6 +22,15 @@ public class FilmeController
     public List<Filme> listarFilmes()
     {
         return filmeService.listarFilmes();
+    }
+
+    @GetMapping("/filmes/{id}")
+    public ResponseEntity<Filme> buscarPorId(@PathVariable Long id)
+    {
+        Optional<Filme> filme = filmeService.buscarPorId(id);
+
+        if (filme.isPresent()) return ResponseEntity.ok(filme.get());
+        else return ResponseEntity.notFound().build();
     }
 
     @PostMapping("/filmes")
