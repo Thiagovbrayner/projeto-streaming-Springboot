@@ -2,6 +2,7 @@ package com.thiago.streamingapi.controller;
 
 import com.thiago.streamingapi.model.Filme;
 import com.thiago.streamingapi.service.FilmeService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,7 @@ public class FilmeController
     }
 
     @PostMapping("/filmes")
-    public Filme inserirFilme(@RequestBody Filme filme)
+    public Filme inserirFilme(@Valid @RequestBody Filme filme)
     {
         return filmeService.inserirFilme(filme);
     }

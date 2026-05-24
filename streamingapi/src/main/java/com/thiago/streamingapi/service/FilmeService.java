@@ -43,7 +43,7 @@ public class FilmeService
 
         if (filme.getTitulo() != null) filmeExistente.setTitulo(filme.getTitulo());
         if (filme.getDiretor() != null) filmeExistente.setDiretor(filme.getDiretor());
-        if (filme.getGenero() != null) filmeExistente.setGenero(filme.getGenero());
+        if (filme.getCategoria() != null) filmeExistente.setCategoria(filme.getCategoria());
         if (filme.getDescricao() != null) filmeExistente.setDescricao(filme.getDescricao());
 
         return filmeRepository.save(filmeExistente);

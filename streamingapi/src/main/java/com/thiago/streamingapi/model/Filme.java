@@ -1,9 +1,7 @@
 package com.thiago.streamingapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Filme
@@ -11,23 +9,30 @@ public class Filme
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
     private String titulo;
+
+    @NotBlank
     private String diretor;
-    private String genero;
+
+    @ManyToOne
+    private Categoria categoria;
+
     private String descricao;
 
-    public Filme(Long id, String titulo, String diretor, String genero, String descricao)
+    public Filme(Long id, String titulo, String diretor, Categoria categoria, String descricao)
     {
         this.id = id;
         this.titulo = titulo;
         this.diretor = diretor;
-        this.genero = genero;
+        this.categoria = categoria;
         this.descricao = descricao;
     }
 
     public Filme()
     {
-        
+
     }
 
 
@@ -55,12 +60,12 @@ public class Filme
         this.diretor = diretor;
     }
 
-    public String getGenero() {
-        return genero;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public String getDescricao() {
