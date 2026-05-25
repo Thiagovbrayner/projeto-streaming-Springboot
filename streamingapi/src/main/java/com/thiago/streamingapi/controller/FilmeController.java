@@ -1,5 +1,6 @@
 package com.thiago.streamingapi.controller;
 
+import com.thiago.streamingapi.dto.FilmeRequestDTO;
 import com.thiago.streamingapi.model.Filme;
 import com.thiago.streamingapi.service.FilmeService;
 import jakarta.validation.Valid;
@@ -35,9 +36,9 @@ public class FilmeController
     }
 
     @PostMapping("/filmes")
-    public Filme inserirFilme(@Valid @RequestBody Filme filme)
+    public Filme inserirFilme(@Valid @RequestBody FilmeRequestDTO filmeRequestDTO)
     {
-        return filmeService.inserirFilme(filme);
+        return filmeService.inserirFilme(filmeRequestDTO);
     }
 
     @DeleteMapping("/filmes/{id}")
@@ -47,9 +48,9 @@ public class FilmeController
     }
 
     @PutMapping("/filmes/{id}")
-    public Filme updateFilme(@RequestBody Filme filme, @PathVariable Long id)
+    public Filme updateFilme(@RequestBody FilmeRequestDTO filmeRequestDTO, @PathVariable Long id)
     {
-         return filmeService.updateFilme(filme, id);
+         return filmeService.updateFilme(filmeRequestDTO, id);
     }
 
 }

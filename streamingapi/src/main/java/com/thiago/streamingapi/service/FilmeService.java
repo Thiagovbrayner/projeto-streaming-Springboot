@@ -1,6 +1,9 @@
 package com.thiago.streamingapi.service;
 
+import com.thiago.streamingapi.dto.FilmeRequestDTO;
+import com.thiago.streamingapi.model.Categoria;
 import com.thiago.streamingapi.model.Filme;
+import com.thiago.streamingapi.repository.CategoriaRepository;
 import com.thiago.streamingapi.repository.FilmeRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,14 +14,22 @@ import java.util.Optional;
 public class FilmeService
 {
     private final FilmeRepository filmeRepository;
+    private final CategoriaRepository categoriaRepository;
 
-    public FilmeService(FilmeRepository filmeRepository)
+    public FilmeService(FilmeRepository filmeRepository, CategoriaRepository categoriaRepository)
     {
         this.filmeRepository = filmeRepository;
+        this.categoriaRepository = categoriaRepository;
     }
 
-    public Filme inserirFilme(Filme filme)
+    public Filme inserirFilme(FilmeRequestDTO filmeRequestDTO)
     {
+        Filme filme = new Filme();
+        filme.setTitulo(filmeRequestDTO.getTitulo());
+        filme.setDescricao(filmeRequestDTO.getDescricao());
+        filme.setDiretor(filmeRequestDTO.getDiretor());
+        Categoria categoria = categoriaRepository.findById(filmeRequestDTO.getCategoriaId()).orElseThrow();
+        filme.setCategoria(categoria);
         return filmeRepository.save(filme);
     }
 
@@ -37,14 +48,18 @@ public class FilmeService
         filmeRepository.deleteById(id);
     }
 
-    public Filme updateFilme(Filme filme, Long id)
+    public Filme updateFilme(FilmeRequestDTO filmeRequestDTO, Long id)
     {
         Filme filmeExistente = filmeRepository.findById(id).orElseThrow();
 
-        if (filme.getTitulo() != null) filmeExistente.setTitulo(filme.getTitulo());
-        if (filme.getDiretor() != null) filmeExistente.setDiretor(filme.getDiretor());
-        if (filme.getCategoria() != null) filmeExistente.setCategoria(filme.getCategoria());
-        if (filme.getDescricao() != null) filmeExistente.setDescricao(filme.getDescricao());
+        if (filmeRequestDTO.getTitulo() != null) filmeExistente.setTitulo(filmeRequestDTO.getTitulo());
+        if (filmeRequestDTO.getDiretor() != null) filmeExistente.setDiretor(filmeRequestDTO.getDiretor());
+        if (filmeRequestDTO.getCategoriaId() != null)
+        {
+            Categoria categoria =  categoriaRepository.findById(filmeRequestDTO.getCategoriaId()).orElseThrow();
+            filmeExistente.setCategoria(categoria);
+        }
+        if (filmeRequestDTO.getDescricao() != null) filmeExistente.setDescricao(filmeRequestDTO.getDescricao());
 
         return filmeRepository.save(filmeExistente);
     }
