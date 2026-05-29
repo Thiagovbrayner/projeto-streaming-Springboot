@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/streamingapi.iml" filepath="$PROJECT_DIR$/.idea/streamingapi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/streamingapi/streamingapi.iml" filepath="$PROJECT_DIR$/streamingapi/streamingapi.iml" />
     </modules>
   </component>
 </project>
