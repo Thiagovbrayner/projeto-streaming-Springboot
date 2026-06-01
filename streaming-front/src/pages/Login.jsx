@@ -1,17 +1,29 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '../services/api'
+import { useAutenticacao } from '../contexts/AuthContext'
 
 function Login() {
 
     const navigate = useNavigate()
 
+    const { entrar, estaAutenticado } = useAutenticacao()
+
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
+    const [erro, setErro] = useState('')
+
+    if (estaAutenticado) {
+
+        navigate('/')
+        return null
+    }
 
     async function fazerLogin(e) {
 
         e.preventDefault()
+
+        setErro('')
 
         try {
 
@@ -21,22 +33,14 @@ function Login() {
                 senha: senha
 
             })
-            console.log(response.data)
 
-            localStorage.setItem(
-                'token',
-                response.data
-            )
-
-            alert('Login realizado com sucesso!')
+            entrar(response.data)
 
             navigate('/')
 
-        } catch (error) {
+        } catch {
 
-            alert('Email ou senha inválidos')
-
-            console.log(error)
+            setErro('Email ou senha inválidos')
         }
     }
 
@@ -50,6 +54,14 @@ function Login() {
             >
 
                 <h1>Login Admin</h1>
+
+                {erro && (
+
+                    <p className="login-erro">
+                        {erro}
+                    </p>
+
+                )}
 
                 <input
                     type="email"
