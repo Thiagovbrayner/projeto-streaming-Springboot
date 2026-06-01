@@ -31,18 +31,15 @@ public class AdminService
 
     public String login(LoginRequestDTO loginRequestDTO)
     {
-        Optional<Admin> admin = adminRepository.findByEmail(loginRequestDTO.getEmail());
+        Admin admin = adminRepository.findByEmail(loginRequestDTO.getEmail())
+                .orElseThrow(() -> new RuntimeException("Usuário ou senha inválidos"));
 
-        if (admin.isPresent())
+        if (!passwordEncoder.matches(loginRequestDTO.getSenha(), admin.getSenha()))
         {
-            if (passwordEncoder.matches(loginRequestDTO.getSenha(), admin.get().getSenha()))
-            {
-                return jwtService.gerarToken(admin.get().getEmail());
-            }
-
+            throw new RuntimeException("Usuário ou senha inválidos");
         }
 
-        return "Erro ao logar!";
+        return jwtService.gerarToken(admin.getEmail());
     }
 
     public void deletarAdmin(Long id)

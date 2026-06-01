@@ -21,13 +21,17 @@ public class Filme
 
     private String descricao;
 
-    public Filme(Long id, String titulo, String diretor, Categoria categoria, String descricao)
+    @Column(name = "url_imagem", length = 1000) 
+    private String imagemUrl;
+
+    public Filme(Long id, String titulo, String diretor, Categoria categoria, String descricao, String imagemUrl)
     {
         this.id = id;
         this.titulo = titulo;
         this.diretor = diretor;
         this.categoria = categoria;
         this.descricao = descricao;
+        this.imagemUrl = imagemUrl;
     }
 
     public Filme()
@@ -74,6 +78,14 @@ public class Filme
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getImagemUrl() {
+        return imagemUrl;
+    }
+
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;
     }
 }
 

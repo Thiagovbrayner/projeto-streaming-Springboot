@@ -2,9 +2,6 @@ import { createContext, useContext, useState, useEffect } from 'react'
 
 const AutenticacaoContext = createContext(null)
 
-// TODO(seguranca): Tokens JWT deveriam ser armazenados em cookies HttpOnly
-// configurados pelo backend, e nao no localStorage, para mitigar roubo por XSS.
-// Isso requer mudancas no backend para enviar cookies na resposta de login.
 
 function decodificarToken(token) {
 
@@ -22,13 +19,11 @@ function decodificarToken(token) {
     }
 }
 
-function tokenExpirado(payload) {
+function tokenValido(token) {
 
-    if (!payload || !payload.exp) return true
+    const dados = decodificarToken(token)
 
-    const agora = Date.now() / 1000
-
-    return payload.exp < agora
+    return dados !== null
 }
 
 export function ProvedorAutenticacao({ children }) {
@@ -40,29 +35,30 @@ export function ProvedorAutenticacao({ children }) {
 
         const tokenSalvo = localStorage.getItem('token')
 
-        if (tokenSalvo) {
+        if (tokenSalvo && tokenValido(tokenSalvo)) {
 
             const dados = decodificarToken(tokenSalvo)
 
-            if (dados && !tokenExpirado(dados)) {
+            setToken(tokenSalvo)
+            setEmailAdmin(dados.sub)
 
-                setToken(tokenSalvo)
-                setEmailAdmin(dados.sub)
+        } else if (tokenSalvo) {
 
-            } else {
-
-                localStorage.removeItem('token')
-            }
+            localStorage.removeItem('token')
         }
 
     }, [])
 
     function entrar(novoToken) {
-
-        localStorage.setItem('token', novoToken)
-
         const dados = decodificarToken(novoToken)
 
+        if (!dados) {
+            console.error("Token inválido recebido do servidor");
+            sair();
+            return;
+        }
+
+        localStorage.setItem('token', novoToken)
         setToken(novoToken)
         setEmailAdmin(dados?.sub || null)
     }

@@ -72,8 +72,7 @@ body {
 .filmes-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
 
     gap: 25px;
 }
@@ -82,22 +81,33 @@ body {
 
     background-color: #1f1f1f;
 
-    padding: 20px;
-
     border-radius: 14px;
 
     transition: 0.3s;
 
     border: 1px solid #2a2a2a;
+
+    overflow: hidden;
 }
 
 .filme-card:hover {
 
     transform: translateY(-5px);
 
-
-
     border-color: #e50914;
+}
+
+.filme-card-imagem {
+
+    width: 100%;
+    height: auto;
+
+    display: block;
+}
+
+.filme-card-conteudo {
+
+    padding: 20px;
 }
 
 .filme-card h2 {
@@ -110,6 +120,45 @@ body {
 
 .descricao {
     color: #ccc;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+.tabela-thumb {
+
+    width: 40px;
+    height: auto;
+
+    border-radius: 4px;
+}
+
+.sem-imagem {
+
+    color: #555;
+}
+
+.preview-imagem {
+
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.preview-img {
+
+    width: 200px;
+    height: auto;
+
+    border-radius: 8px;
+
+    border: 1px solid #333;
 }
 
 .login-container {
@@ -245,6 +294,13 @@ body {
 
     color: #888;
     font-size: 14px;
+}
+
+.admin-cabecalho-botoes {
+
+    display: flex;
+
+    gap: 12px;
 }
 
 .botao-novo-filme {

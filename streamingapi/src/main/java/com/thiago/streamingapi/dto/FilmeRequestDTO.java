@@ -6,6 +6,7 @@ public class FilmeRequestDTO
     private String diretor;
     private String descricao;
     private Long categoriaId;
+    private String imagemUrl;
 
     public FilmeRequestDTO()
     {
@@ -42,5 +43,13 @@ public class FilmeRequestDTO
 
     public void setCategoriaId(Long categoriaId) {
         this.categoriaId = categoriaId;
+    }
+
+    public String getImagemUrl() {
+        return imagemUrl;
+    }
+
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;
     }
 }

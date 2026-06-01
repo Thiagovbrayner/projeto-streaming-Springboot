@@ -28,6 +28,7 @@ public class FilmeService
         filme.setTitulo(filmeRequestDTO.getTitulo());
         filme.setDescricao(filmeRequestDTO.getDescricao());
         filme.setDiretor(filmeRequestDTO.getDiretor());
+        filme.setImagemUrl(filmeRequestDTO.getImagemUrl());
         Categoria categoria = categoriaRepository.findById(filmeRequestDTO.getCategoriaId()).orElseThrow();
         filme.setCategoria(categoria);
         return filmeRepository.save(filme);
@@ -60,6 +61,7 @@ public class FilmeService
             filmeExistente.setCategoria(categoria);
         }
         if (filmeRequestDTO.getDescricao() != null) filmeExistente.setDescricao(filmeRequestDTO.getDescricao());
+        if (filmeRequestDTO.getImagemUrl() != null) filmeExistente.setImagemUrl(filmeRequestDTO.getImagemUrl());
 
         return filmeRepository.save(filmeExistente);
     }

@@ -91,12 +91,23 @@ function Admin() {
 
                     </div>
 
-                    <button
-                        className="botao-novo-filme"
-                        onClick={() => navigate('/admin/novo-filme')}
-                    >
-                        + Novo Filme
-                    </button>
+                    <div className="admin-cabecalho-botoes">
+
+                        <button
+                            className="botao-cancelar"
+                            onClick={() => navigate('/')}
+                        >
+                            ← Voltar à Home
+                        </button>
+
+                        <button
+                            className="botao-novo-filme"
+                            onClick={() => navigate('/admin/novo-filme')}
+                        >
+                            + Novo Filme
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -129,6 +140,7 @@ function Admin() {
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Imagem</th>
                                     <th>Título</th>
                                     <th>Diretor</th>
                                     <th>Categoria</th>
@@ -143,6 +155,24 @@ function Admin() {
                                     <tr key={filme.id}>
 
                                         <td>{filme.id}</td>
+
+                                        <td>
+                                            {filme.imagemUrl ? (
+
+                                                <img
+                                                    className="tabela-thumb"
+                                                    src={filme.imagemUrl}
+                                                    alt={filme.titulo}
+                                                />
+
+                                            ) : (
+
+                                                <span className="sem-imagem">
+                                                    —
+                                                </span>
+
+                                            )}
+                                        </td>
 
                                         <td>{filme.titulo}</td>
 
