@@ -128,6 +128,60 @@ body {
     overflow: hidden;
 }
 
+.detalhes-container {
+
+    display: flex;
+
+    gap: 40px;
+
+    padding: 40px;
+}
+
+.detalhes-imagem {
+
+    width: 350px;
+
+    border-radius: 12px;
+}
+
+.detalhes-info {
+
+    max-width: 700px;
+}
+
+.detalhes-info h1 {
+
+    margin-bottom: 20px;
+
+    font-size: 3rem;
+}
+
+.detalhes-info p {
+
+    margin-bottom: 15px;
+
+    line-height: 1.6;
+}
+
+.botao-play {
+
+    margin-top: 20px;
+
+    background-color: #e50914;
+
+    color: white;
+
+    border: none;
+
+    padding: 15px 30px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
 .tabela-thumb {
 
     width: 40px;
@@ -680,4 +734,20 @@ body {
 
     background-color: #333;
     color: white;
+}
+
+.detalhes-topo {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-bottom: 30px;
+}
+
+.detalhes-topo .botao-cancelar {
+
+    flex: unset;
+
+    width: auto;
 }

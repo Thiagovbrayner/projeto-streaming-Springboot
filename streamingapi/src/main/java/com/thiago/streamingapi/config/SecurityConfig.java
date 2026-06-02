@@ -35,8 +35,6 @@ public class SecurityConfig
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/filmes/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/categorias/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/admins").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/admins/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .anyRequest().authenticated()
                 )
@@ -48,11 +46,8 @@ public class SecurityConfig
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Permite a origem do seu front-end vinda da porta 5173
         configuration.setAllowedOrigins(List.of("http://localhost:5173"));
-        // Permite os métodos necessários para a API, inclusive OPTIONS (Preflight)
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        // Garante que o cabeçalho Authorization e o Content-Type sejam aceitos pelo Spring
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
 

@@ -1,14 +1,22 @@
+import { useNavigate } from 'react-router-dom'
+
 function FilmeCard({ filme }) {
+
+    const navigate = useNavigate()
 
     return (
 
-        <div className="filme-card">
+        <div
+            className="filme-card"
+            onClick={() => navigate(`/filmes/${filme.id}`)}
+            style={{ cursor: 'pointer' }}
+        >
 
             {filme.imagemUrl && (
 
                 <img
                     className="filme-card-imagem"
-                    src={filme.imagemUrl} // <-- Voltou ao texto puro original
+                    src={filme.imagemUrl}
                     alt={filme.titulo}
                 />
 
@@ -33,6 +41,7 @@ function FilmeCard({ filme }) {
             </div>
 
         </div>
+
     )
 }
 

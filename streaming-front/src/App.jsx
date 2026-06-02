@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Admin from './pages/Admin'
 import FilmeForm from './pages/FilmeForm'
 import RotaProtegida from './components/ProtectedRoute'
+import DetalheFilme from './pages/DetalheFilme'
 
 function App() {
 
@@ -38,6 +39,8 @@ function App() {
                             <FilmeForm />
                         </RotaProtegida>
                     } />
+
+                    <Route path="/filmes/:id" element={<DetalheFilme />} />
 
                 </Routes>
 
