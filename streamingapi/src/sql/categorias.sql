@@ -1,0 +1,15 @@
+INSERT INTO categoria (id, nome) VALUES (1, 'Crime');
+INSERT INTO categoria (id, nome) VALUES (2, 'Ficção Científica');
+INSERT INTO categoria (id, nome) VALUES (3, 'Drama');
+INSERT INTO categoria (id, nome) VALUES (4, 'Mistério');
+INSERT INTO categoria (id, nome) VALUES (5, 'Suspense');
+INSERT INTO categoria (id, nome) VALUES (6, 'Terror');
+INSERT INTO categoria (id, nome) VALUES (7, 'Comédia');
+INSERT INTO categoria (id, nome) VALUES (8, 'Aventura');
+INSERT INTO categoria (id, nome) VALUES (9, 'Ação');
+INSERT INTO categoria (id, nome) VALUES (10, 'Fantasia');
+INSERT INTO categoria (id, nome) VALUES (11, 'Romance');
+INSERT INTO categoria (id, nome) VALUES (12, 'Animação');
+INSERT INTO categoria (id, nome) VALUES (13, 'Documentário');
+INSERT INTO categoria (id, nome) VALUES (14, 'Biografia');
+INSERT INTO categoria (id, nome) VALUES (15, 'Guerra');
